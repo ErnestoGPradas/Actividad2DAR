@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Ejercicio 1 - Ejercicios Javascript</title>
+  <link rel="stylesheet" type="text/css" href="./resources/css/lab1_style.css">
+  <script type="text/javascript" src="./resources/js/code.js"></script>
+
+</head>
+<body>
+<h1>Ejercicios parte javascript</h1>
+<form action="#">
+  <p>Seleccione el ejercicio que quiere ver:</p>
+  <input type="radio" class="ejercicioCK" id="ej1" name="ejercicio" value="Ejercicio1">
+  <label for="ejercicio1">Ejercicio 1</label><br>
+  <input type="radio" class="ejercicioCK" id="ej2" name="ejercicio" value="Ejercicio2">
+  <label for="ejercicio2">Ejercicio 2</label><br>
+  <input type="radio" class="ejercicioCK" id="ej3" name="ejercicio" value="Ejercicio3">
+  <label for="ejercicio3">Ejercicio 3</label><br>
+  <input type="radio" class="ejercicioCK" id="ej4" name="ejercicio" value="Ejercicio4">
+  <label for="ejercicio4">Ejercicio 4</label><br>
+  <input type="radio" class="ejercicioCK" id="todos" name="ejercicio" value="Todos">
+  <label for="todos">Mostrar Todos</label><br>
+
+  </br>
+  <input type="button" value="Mostrar" onclick="mostrarEjercicios()">
+</form>
+<div id="ejercicio1" class="ocultar">
+  <h2>Ejercicio 1</h2>
+  <p>1.	Detectar si la cadena de entrada en un palíndromo.</p>
+  <form action="#">
+    Introducir cadena:
+    <input type="text" id="recurso1" size="70" />
+    <input type="button" id="enviar" value="Comprobar si es un palíndromo" onclick="comprobarCadenaPalindromo();"/>
+  </form>
+  <div id="principal1">
+    <h2>Es un palíndromo: <label class="ejercicio1" id="respuesta1"></label></h2>
+  </div>
+</div>
+
+<div id="ejercicio2" class="ocultar">
+  </br></br></br></br>
+  <h2>Ejercicio 2</h2>
+  <p>2.	Escribe un programa que pida dos números y escriba en la pantalla cual es el mayor.</p>
+  <form action="#">
+    <input type="button" id="enviar2" value="Introducir números" onclick="comprobarMayor();"/>
+  </form>
+  <div id="principal2">
+    <h2><label class="ejercicio1" id="respuesta2"></label></h2>
+  </div>
+</div>
+
+<div id="ejercicio3" class="ocultar">
+  </br></br></br></br>
+  <h2>Ejercicio 3</h2>
+  <p>3.	Escribe un programa que pida una frase y escriba las vocales que aparecen.</p>
+  <form action="#">
+    <input type="button" id="enviar3" value="Introducir frase" onclick="escribirVocales();"/>
+  </form>
+  <div id="principal3">
+    <h2><label class="frase" id="fraseOriginal"></label></h2>
+    <h2><label class="fraseRespuesta" id="respuesta3"></label></h2>
+  </div>
+</div>
+
+<div id="ejercicio4" class="ocultar">
+  </br></br></br></br>
+  <h2>Ejercicio 4</h2>
+  <p>4.	Escribe un programa que pida una frase y escriba cuántas veces aparecen cada una de las vocales.</p>
+  <form action="#">
+    <input type="button" id="enviar4" value="Introducir frase" onclick="contarVocales();"/>
+  </form>
+  <div id="principal4">
+    <h3><label class="frase" id="fraseOriginal2"></label></h3>
+    <h2><label class="fraseRespuesta" id="respuesta4"></label></h2>
+    <h2><label class="fraseRespuestaN" id="respuestaA"></label></h2>
+    <h2><label class="fraseRespuestaN" id="respuestaE"></label></h2>
+    <h2><label class="fraseRespuestaN" id="respuestaI"></label></h2>
+    <h2><label class="fraseRespuestaN" id="respuestaO"></label></h2>
+    <h2><label class="fraseRespuestaN" id="respuestaU"></label></h2>
+  </div>
+</div>
+
+
+
+
+
+</body>
+</html>
