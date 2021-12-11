@@ -4,13 +4,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Ejercicio 1 - Estados de la petición AJAX</title>
   <link rel="stylesheet" type="text/css" href="./resources/css/lab1_style.css">
-  <script type="text/javascript" src="./resources/js/code.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="application/javascript" src="./resources/js/code.js"></script>
 </head>
 <body>
   <form action="#">
     URL:
     <input type="text" id="recurso" size="70" />
-    <input type="button" id="enviar" value="Mostrar contenidos" onclick="doFunction();"/>
+    <input type="button" id="enviar" value="Mostrar contenidos" onclick="descargarContenido();"/>
   </form>
 
   <div id="principal">

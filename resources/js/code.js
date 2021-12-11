@@ -168,3 +168,93 @@ function contarVocales(){
     document.getElementById("respuestaO").innerHTML = "Total de veces que aparece la 'o': "+resultadoO;
     document.getElementById("respuestaU").innerHTML = "Total de veces que aparece la 'u': "+resultadoU;
 }
+
+//***********EJERCICIOS AJAX*************
+
+//Ejericio1
+/*ENUNCIADO: Al caregar la página, el cuadro de texto debe mostrar por defecto la URL de la propia página.
+* SOLUCIÓNPara ello hemos utilizado la función document ready de jquery que nos permite realizar cualquier
+* acción cuando la página se carga.
+* Capturamos el evento de la carga, capturamos la url actual con windows location de javascript
+* o como lo he hecho en la función con el evento location de jquery.
+* Finalmente introducimos el valor de la url en el valor del input con la función .val()
+* de jquery.*/
+$( document ).ready(function() {
+    var urlActual = $(location).attr('href');
+    $("#recurso").val(urlActual);
+
+
+});
+String.prototype.transformaCaracteresEspeciales = function() {
+    return unescape(escape(this).
+    replace(/%0A/g, '<br/>').
+    replace(/%3C/g, '&lt;').
+    replace(/%3E/g, '&gt;'));
+}
+var estadosPosibles = ['No inicializado', 'Cargando', 'Cargado', 'Interactivo', 'Completado'];
+var tiempoInicial = 0;
+function descargarContenido() {
+    // Reseteamos los valores de los campos
+    $("#contenidos").val("");
+    $("#cabeceras").val("");
+    $("#estados").val("");
+    $("#codigos").val("");
+
+    // Instanciamos el objeto XMLHttpRequest para navegadores modernos
+    if(window.XMLHttpRequest) {
+        peticion = new XMLHttpRequest();
+    }
+    else {
+        //instanciamos el objeto ActiveXobject para navegadores antigüos como IE6,7,8
+        peticion = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+
+    peticion.onreadystatechange = mostrarContenido;
+
+    // Realizamos la petición
+    tiempoInicial = new Date();
+    var recurso = $("#recurso").val();
+    peticion.open('GET', recurso+'?nocache='+Math.random(), true);
+    // Añadimos las cabeceras para evitar errores de CORS
+    peticion.setRequestHeader("accept", "application/json");
+    peticion.setRequestHeader("Content-Type", " application/javascript; charset=utf-8");
+    peticion.setRequestHeader("Access-Control-Allow-Origin", "*");
+    peticion.setRequestHeader("Access-control-allow-credentials", true);
+    peticion.setRequestHeader("Access-Control-Allow-Headers", "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version");
+    peticion.setRequestHeader("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
+    peticion.setRequestHeader("X-Content-Type-Options", "nosniff");
+    peticion.send(null);
+}
+
+//Respuesta
+function mostrarContenido() {
+    var tiempoFinal = new Date();
+    var milisegundos = tiempoFinal - tiempoInicial;
+
+    var estados = document.getElementById('estados');
+    estados.innerHTML += "[" + milisegundos + " mseg.] " + estadosPosibles[peticion.readyState] + "<br/>";
+
+    if(peticion.readyState == 4) {
+        if(peticion.status == 200) {
+            var contenidos = document.getElementById('contenidos');
+            contenidos.innerHTML = peticion.responseText.transformaCaracteresEspeciales();
+        }
+        mostrarCabeceras();
+        mostrarCodigoEstado();
+    }
+}
+function mostrarCabeceras() {
+    var cabeceras = document.getElementById('cabeceras');
+    cabeceras.innerHTML = peticion.getAllResponseHeaders().transformaCaracteresEspeciales();
+}
+
+function mostrarCodigoEstado() {
+    var codigo = document.getElementById('codigo');
+    codigo.innerHTML = peticion.status + "<br/>" + peticion.statusText;
+}
+
+
+
+
+
